@@ -53,4 +53,46 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+})
+
+.controller('berandaCtrl',function($scope,$cordovaFlashlight ){
+  console.log("beranda Ctrl Init");
+
+    // $cordovaFlashlight.available().then(function(availability) {
+    //   var avail = availability; // is available
+    //   alert("Flash Available");
+    // }, function () {
+    //   alert("Flash Unavailable");
+    // });
+
+  $scope.FlashON =  function () {
+     $cordovaFlashlight.switchOn()
+    .then(
+      function (success) { /* success */ },
+      function (error) { 
+      alert("Flash turn on failed");
+
+       });
+  }
+  $scope.FlashOff =  function () {
+     $cordovaFlashlight.switchOff()
+    .then(
+      function (success) { /* success */ },
+      function (error) { 
+      alert("Flash Turn off Failed");
+
+       });
+  }
+
+
+})
+.controller('tentangCtrl',function($scope){
+  console.log("tentang Ctrl Init");
+})
+.controller('terjemahCtrl',function($scope){
+  console.log("terjemah Ctrl Init");
+})
+.controller('kompasCtrl',function($scope){
+  console.log("kompas Ctrl Init");
+})
+;
