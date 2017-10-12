@@ -55,9 +55,9 @@ angular.module('starter.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 
-.controller('berandaCtrl',function($scope,$cordovaFlashlight ){
+.controller('berandaCtrl',function($scope,$cordovaFlashlight,clxMorseTranslator ){
   console.log("beranda Ctrl Init");
-
+  clxMorseTranslator.toMorse("kadal KADAL ");
     // $cordovaFlashlight.available().then(function(availability) {
     //   var avail = availability; // is available
     //   alert("Flash Available");
@@ -69,7 +69,7 @@ angular.module('starter.controllers', [])
      $cordovaFlashlight.switchOn()
     .then(
       function (success) { /* success */ },
-      function (error) { 
+      function (error) {
       alert("Flash turn on failed");
 
        });
@@ -78,7 +78,7 @@ angular.module('starter.controllers', [])
      $cordovaFlashlight.switchOff()
     .then(
       function (success) { /* success */ },
-      function (error) { 
+      function (error) {
       alert("Flash Turn off Failed");
 
        });
@@ -89,8 +89,14 @@ angular.module('starter.controllers', [])
 .controller('tentangCtrl',function($scope){
   console.log("tentang Ctrl Init");
 })
-.controller('terjemahCtrl',function($scope){
+.controller('terjemahCtrl',function($scope,clxMorseTranslator){
   console.log("terjemah Ctrl Init");
+  $scope.translateToTextMorse = function(input){
+    var output = clxMorseTranslator.toMorse(input.text);
+    console.log(output);
+    $scope.output = output;
+  }
+
 })
 .controller('kompasCtrl',function($scope){
   console.log("kompas Ctrl Init");

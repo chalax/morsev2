@@ -72,4 +72,37 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
     });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/beranda');
+})
+.factory('clxMorseTranslator', function() {
+  return {
+      toMorse: function(words) {
+        words = words.toLowerCase();
+        var morsecode = "";
+        //split words to letters
+        var lettersArray = words.split("");
+        for (var i = 0; i < words.length; i++) {
+          var letterMorse = getmorsecode(words[i]);
+          morsecode = morsecode+letterMorse+" ";
+        }
+        return morsecode;
+      },
+      toUtf8: function() {
+        console.log("Translated to UTF-8");
+      }
+    };
 });
+var morseCodeArray = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--..",".----","..---","...--","....-",".....","-....","--...","---..","----.","-----"];
+var utf8Array = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","w","z","1","2","3","4","5","6","7","8","9","0"];
+function getmorsecode(letter){
+  var x = utf8Array.indexOf(letter);
+  if(x!==-1){
+    return morseCodeArray[x];
+  }else if(letter===" "){
+    return "/";
+  }else{
+    return "?";
+  }
+}
+function getUtf8(morsecode){
+
+}
