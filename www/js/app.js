@@ -46,8 +46,15 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
     url: '/tentang',
     views: {
       'menuContent': {
-        templateUrl: 'templates/tentang.html',
-        controller: 'tentangCtrl'
+        templateUrl: 'templates/tentang.html'
+      }
+    }
+  })
+  .state('app.tabel', {
+    url: '/tabel',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/tabel.html'
       }
     }
   })
@@ -61,7 +68,25 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
         }
       }
     })
-    .state('app.kompas', {
+    .state('app.belajar', {
+        url: '/belajar',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/belajar.html',
+            controller: 'belajarCtrl'
+          }
+        }
+      })
+    .state('app.alat', {
+        url: '/alat',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/alat.html',
+            controller: 'alatCtrl'
+          }
+        }
+      })
+    .state('app.alat.kompas', {
       url: '/kompas',
       views: {
         'menuContent': {

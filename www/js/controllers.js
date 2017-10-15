@@ -66,15 +66,55 @@ angular.module('starter.controllers', [])
     // });
 
   $scope.FlashON =  function () {
-     $cordovaFlashlight.switchOn()
-    .then(
-      function (success) { /* success */ },
-      function (error) {
-      alert("Flash turn on failed");
+    console.log("FLASH ON CLICKED");
+     $cordovaFlashlight.switchOn();
+     sleep(100);
+     $cordovaFlashlight.switchOff();
+     sleep(100);
+     $cordovaFlashlight.switchOn();
+     sleep(100);
+     $cordovaFlashlight.switchOff();
+     sleep(100);
+     $cordovaFlashlight.switchOn();
+     sleep(100);
+     $cordovaFlashlight.switchOff();
+     sleep(100);
 
-       });
+     $cordovaFlashlight.switchOn();
+     sleep(400);
+     $cordovaFlashlight.switchOff();
+     sleep(100);
+     $cordovaFlashlight.switchOn();
+     sleep(400);
+     $cordovaFlashlight.switchOff();
+     sleep(100);
+     $cordovaFlashlight.switchOn();
+     sleep(400);
+     $cordovaFlashlight.switchOff();
+     sleep(100);
+
+     $cordovaFlashlight.switchOn();
+     sleep(100);
+     $cordovaFlashlight.switchOff();
+     sleep(100);
+     $cordovaFlashlight.switchOn();
+     sleep(100);
+     $cordovaFlashlight.switchOff();
+     sleep(100);
+     $cordovaFlashlight.switchOn();
+     sleep(100);
+     $cordovaFlashlight.switchOff();
+     sleep(100);
+
+    // .then(
+    //   function (success) { /* success */ },
+    //   function (error) {
+    //   alert("Flash turn on failed");
+    //
+    //    });
   }
   $scope.FlashOff =  function () {
+    console.log("FLASH Off CLICKED");
      $cordovaFlashlight.switchOff()
     .then(
       function (success) { /* success */ },
@@ -89,16 +129,79 @@ angular.module('starter.controllers', [])
 .controller('tentangCtrl',function($scope){
   console.log("tentang Ctrl Init");
 })
-.controller('terjemahCtrl',function($scope,clxMorseTranslator){
+.controller('terjemahCtrl',function($scope,clxMorseTranslator,$cordovaFlashlight){
   console.log("terjemah Ctrl Init");
   $scope.translateToTextMorse = function(input){
     var output = clxMorseTranslator.toMorse(input.text);
     console.log(output);
     $scope.output = output;
   }
+  $scope.translateToTextFlash =function(input){
+    var output = clxMorseTranslator.toMorse(input.text);
+    $scope.output = output;
+    var charsplit = output.split("");
+    for (var i = 0; i < charsplit.length; i++) {
+        if(charsplit[i]=="."){
+          playDot();
+        }else if (charsplit[i]=='-') {
+          playDash();
+        }else if (charsplit[i]==' ') {
+          playSpace();
+        }else if (charsplit[i]=='/') {
+          playSlash();
+        }
+    }
+  }
 
+
+  //function for playing morse code
+  function playDot(){
+    $cordovaFlashlight.switchOn();
+    sleep(100);
+    $cordovaFlashlight.switchOff();
+  }
+  function playDash(){
+    $cordovaFlashlight.switchOn();
+    sleep(400);
+    $cordovaFlashlight.switchOff();
+  }
+  function playSpace(){
+    sleep(500)
+  }
+  function playSlash(){
+    sleep(1000)
+  }
+
+})
+.controller('belajarCtrl',function($scope,clxMorseTranslator){
+  console.log("belajar Ctrl Init");
+  $scope.translateToTextMorse = function(input){
+    var output = clxMorseTranslator.toMorse(input.text);
+    console.log(output);
+    $scope.output = output;
+  }
+
+  
+})
+.controller('alatCtrl',function($scope){
+  console.log("alat Ctrl Init");
+})
+.controller('senterCtrl',function($scope){
+  console.log("senter Ctrl Init");
 })
 .controller('kompasCtrl',function($scope){
   console.log("kompas Ctrl Init");
-})
-;
+});
+
+
+
+
+//External function for slee()
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
