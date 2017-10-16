@@ -111,13 +111,29 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
         }
         return morsecode;
       },
-      toUtf8: function() {
-        console.log("Translated to UTF-8");
+      toUtf8: function(morsecode) {
+        var words = "";
+        morsecode = morsecode.split(" ");
+
+        for (var i = 0; i < morsecode.length; i++) {
+          var lettersUtf8 ="";
+          if(morsecode[i]=="/"){
+            lettersUtf8 = " ";
+          }else{
+            lettersUtf8 = getUtf8(morsecode[i]);
+
+          }
+          words = words+lettersUtf8;
+
+
+        }
+        return words;
+        console.log(words);
       }
     };
 });
 var morseCodeArray = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--..",".----","..---","...--","....-",".....","-....","--...","---..","----.","-----"];
-var utf8Array = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","w","z","1","2","3","4","5","6","7","8","9","0"];
+var utf8Array = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0"];
 function getmorsecode(letter){
   var x = utf8Array.indexOf(letter);
   if(x!==-1){
@@ -129,5 +145,10 @@ function getmorsecode(letter){
   }
 }
 function getUtf8(morsecode){
-
+  var x= morseCodeArray.indexOf(morsecode);
+  if(x!=="/"){
+    return utf8Array[x];
+  }else if (x==="/") {
+    return " ";
+  }
 }

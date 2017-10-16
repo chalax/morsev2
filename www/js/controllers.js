@@ -180,8 +180,33 @@ angular.module('starter.controllers', [])
     console.log(output);
     $scope.output = output;
   }
+  $scope.inputMorse={};
+  $scope.inputMorse.text = "";
+  $scope.inputDot = function(){
+    // $scope.inputMorse.text = $scope.inputMorse.text+".";
+    $scope.inputMorse.text +=".";
+  }
+  $scope.inputDash = function(){
+    $scope.inputMorse.text +="-";
+    // $scope.inputMorse.text = $scope.inputMorse.text+"-";
+  }
+  $scope.inputLetterSeparator = function(){
+    $scope.inputMorse.text = $scope.inputMorse.text+" ";
+  }
+  $scope.inputWordSeparator = function(){
+    $scope.inputMorse.text = $scope.inputMorse.text+" / ";
+  }
+  $scope.clear = function(){
+    $scope.outputmorse = "";
+    $scope.inputMorse.text = "";
+  }
 
-  
+  $scope.translateToMorseToText = function(morse){
+    var outputmorse = clxMorseTranslator.toUtf8(morse.text);
+    $scope.outputmorse = outputmorse;
+
+  }
+
 })
 .controller('alatCtrl',function($scope){
   console.log("alat Ctrl Init");

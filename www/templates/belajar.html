@@ -1,17 +1,45 @@
 <ion-view view-title="Belajar Morse">
   <ion-content>
-    <h1>Belajar</h1>
+    <h2>Belajar Alfabet Ke Morse</h2>
     <div class="list">
-    <label class="item item-input">
-      <input type="text" ng-model="input.text" placeholder="ketik kata">
-    </label>
-    <label class="item item-input">
-      {{output}}
-    </label>
-    <label class="item item-input">
-        <button ng-click="translateToTextMorse(input)" class="button button-assertive">to morse</button>
-    </label>
+      <label class="item item-input">
+        <input type="text" ng-model="input.text" placeholder="ketik kata">
+      </label>
+      <label class="item item-input">
+        {{output}}
+      </label>
+      <label class="item item-input">
+          <button ng-click="translateToTextMorse(input)" class="button button-assertive">to morse</button>
+      </label>
+    </div>
 
+    <h2>Belajar Morse Ke Alfabet</h2>
+    <div class="list">
+      <label class="item item-input">
+        <input disabled type="text" ng-model="inputMorse.text" placeholder="Tekan Tombol Untuk Input Morse">
+      </label>
+      <label class="item item-input">
+        <button ng-click="inputDot()" class="button button-assertive ">. (DOT)</button>
+      </label>
+        <label class="item item-input">
+          <button ng-click="inputDash()"  class="button button-assertive">- (Dash)</button>
+        </label>
+        <label class="item item-input">
+          <button ng-click="inputLetterSeparator()" class="button button-assertive">_ (Spasi/Pemisah Huruf)</button>
+        </label>
+        <label class="item item-input">
+          <button ng-click="inputWordSeparator()" class="button button-assertive">/ (Pemisah Kata)</button>
+        </label>
+        <label class="item item-input">
+          <button ng-click="clear()" class="button button-assertive"> Clear</button>
+        </label>
 
+      <label class="item item-input">
+        {{outputmorse}}
+      </label>
+      <label class="item item-input">
+          <button ng-click="translateToMorseToText(inputMorse)" class="button button-assertive">to text</button>
+      </label>
+    </div>
   </ion-content>
 </ion-view>
