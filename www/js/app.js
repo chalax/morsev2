@@ -86,12 +86,20 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
           }
         }
       })
-    .state('app.alat.kompas', {
+    .state('app.kompas', {
       url: '/kompas',
       views: {
         'menuContent': {
           templateUrl: 'templates/kompas.html',
           controller: 'kompasCtrl'
+        }
+      }
+    }).state('app.senter', {
+      url: '/senter',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/senter.html',
+          controller: 'senterCtrl'
         }
       }
     });
@@ -131,6 +139,23 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
         console.log(words);
       }
     };
+})
+.directive('rotate', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            scope.$watch(attrs.degrees, function (rotateDegrees) {
+                console.log(rotateDegrees);
+                var r = 'rotate(' + rotateDegrees + 'deg)';
+                element.css({
+                    '-moz-transform': r,
+                    '-webkit-transform': r,
+                    '-o-transform': r,
+                    '-ms-transform': r
+                });
+            });
+        }
+    }
 });
 var morseCodeArray = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--..",".----","..---","...--","....-",".....","-....","--...","---..","----.","-----"];
 var utf8Array = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0"];

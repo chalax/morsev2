@@ -211,11 +211,24 @@ angular.module('starter.controllers', [])
 .controller('alatCtrl',function($scope){
   console.log("alat Ctrl Init");
 })
-.controller('senterCtrl',function($scope){
+.controller('senterCtrl',function($scope,$cordovaFlashlight){
   console.log("senter Ctrl Init");
+  $scope.FlashON =  function () {
+    console.log("FLASH ON CLICKED");
+     $cordovaFlashlight.switchOn();
+   }
+   $scope.FlashOff = function(){
+     console.log("FLASH OFF CLICKED");
+
+     $cordovaFlashlight.switchOff();
+   }
 })
 .controller('kompasCtrl',function($scope){
   console.log("kompas Ctrl Init");
+
+    $scope.rotate = function (angle) {
+      $scope.angle = angle;
+    }
 });
 
 
