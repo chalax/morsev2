@@ -223,12 +223,38 @@ angular.module('starter.controllers', [])
      $cordovaFlashlight.switchOff();
    }
 })
-.controller('kompasCtrl',function($scope){
+.controller('kompasCtrl',function($scope,$cordovaDeviceOrientation){
   console.log("kompas Ctrl Init");
 
     $scope.rotate = function (angle) {
       $scope.angle = angle;
     }
+
+    document.addEventListener("deviceready", function () {
+        $scope.startCompass = function() {
+            var options = {
+                frequency: 500
+            };
+
+            $scope.watchPromise = $cordovaDeviceOrientation.watchHeading(options);
+
+            $scope.watchPromise.then(
+                    null, 
+                    function(error) {
+                        console.log(error);
+                    }, 
+                    function(result) {
+                      var x = parseInt(result.magneticHeading)
+                        $scope.dir ="-"+x ;
+                    }
+                );
+
+        };
+
+        $scope.stopCompass = function() {
+            $cordovaDeviceOrientation.clearWatch($scope.watchPromise.watchID);
+        };
+    });
 });
 
 

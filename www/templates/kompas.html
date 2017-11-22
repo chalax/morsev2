@@ -2,11 +2,11 @@
   <ion-content>
     <h1>Kompas</h1>
     <p>
-            <img degrees='angle' style="width:100%" rotate src='img/compass.png' />
+            <img degrees='dir' style="width:100%" rotate src='img/compass.png' />
     </p>
-        <a ng-click="rotate('-45')">Rotate Left</a>
-
-        <a ng-click="rotate('45')">Rotate Right</a>
-
+        
+        <p>{{dir}}</p>
+        <button class="button button-positive" ng-click="startCompass()">Start</button>
+        <button class="button button-positive" ng-click="stopCompass()">Stop</button>
   </ion-content>
 </ion-view>
